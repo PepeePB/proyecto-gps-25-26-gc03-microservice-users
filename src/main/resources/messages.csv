@@ -1,0 +1,20 @@
+clave;es;en
+register.ok;¡Correo enviado!;Mail send!
+register.duplicate;Este usuario ya está registrado.;This user is already registered.
+register.bad;*Falta traducción*;*No translation*
+access.not_found;¡Usuario no encontrado!;User not found!
+access.bad;*Falta traducción*;*No translation*
+verified.ok;¡Correo enviado!;Mail send!
+verified.not_found;¡Usuario no encontrado!;User not found!
+verified.expired;¡Por favor, renueva tu identificación verificada!;Please, renew your verified id!
+verified.subject;Confirma tu correo.;Confirm your email.
+verified.get.ok;¡Correo enviado!;Mail send!
+verified.get.bad;Tienes un enlace VerifiedID no confirmado.;You have a one VerifiedID link not confirmed.
+reset.password.ok;¡Correo enviado con el enlace para restablecer la contraseña!;Send email with link to reset password!
+reset.password.bad;¡El ID de verificación no es válido!;Id of verified is not valid!
+confirm.ok;¡Cuenta verificada!;Account verified!
+confirm.bad;¡El ID de verificación no es válido!;Id of verified is not valid!
+reset.password.subject;Recupera tu contraseña.;Recover your password.
+reset.password.confirm.ok;¡Contraseña cambiada correctamente!;Password changed successfully!
+reset.password.confirm.unsolicited;Este usuario no ha solicitado un cambio de contraseña.;This user has not requested a password change.
+reset.password.confirm.bad;El usuario introducido no corresponde con un codigo de recuperación de contraseña valido.;The entered username does not correspond to a valid password recovery code.
