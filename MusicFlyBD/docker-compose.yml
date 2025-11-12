@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: alumno
+      MYSQL_DATABASE: MusicFly
+      MYSQL_USER: alumno
+      MYSQL_PASSWORD: alumno
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - MusicFlyNetwork
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    command: ["redis-server", "--requirepass", "alumno"]  # Establecer la contraseña para Redis
+    ports:
+      - "6379:6379"
+    networks:
+      - MusicFlyNetwork
+
+volumes:
+  mysql_data:
+
+networks:
+  MusicFlyNetwork:
+    driver: bridge

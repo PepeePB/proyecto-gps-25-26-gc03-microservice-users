@@ -1,0 +1,101 @@
+<configuration>
+
+    <!-- Definir las propiedades -->
+    <property name="APP_NAME" value="musicfly" />
+    <property name="LOG_PATH" value="logs" />
+
+    <!-- Patrón común para los logs -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n" />
+
+    <!-- Appender para los logs generales (tu aplicación) -->
+    <appender name="APP_LOG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd_HH}/${APP_NAME}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender para los logs de Spring -->
+    <appender name="SPRING_LOG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.spring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd_HH}/${APP_NAME}.spring.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender para los logs de Hibernate -->
+    <appender name="HIBERNATE_LOG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.hibernate.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd_HH}/${APP_NAME}.hibernate.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender específico para las consultas JQL de Hibernate -->
+    <appender name="JQL_LOG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.jql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd_HH}/${APP_NAME}.jql.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender para mostrar logs por consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger raíz (configurado para que no registre en consola ni en otros logs) -->
+    <root level="INFO">
+        <appender-ref ref="APP_LOG_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Logger para Spring (mostrar solo logs de Spring) -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="SPRING_LOG_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger para Hibernate (mostrar solo logs de Hibernate) -->
+    <logger name="org.hibernate" level="INFO" additivity="false">
+        <appender-ref ref="HIBERNATE_LOG_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger específico para consultas JQL (filtrar las consultas SQL de Hibernate) -->
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="JQL_LOG_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger para tu aplicación (si quieres un logger específico para tu paquete) -->
+    <logger name="com.musicfly.backend" level="INFO" additivity="false">
+        <appender-ref ref="APP_LOG_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+
+</configuration>
