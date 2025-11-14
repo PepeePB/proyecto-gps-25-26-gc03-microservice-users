@@ -79,7 +79,7 @@ public class AccessService {
                 allResponse.addCookie(cookieIsArtist);
 
                 if(redisTokenService.hasTokenType(UserOptionsUUID.VALID_TOKEN,user.getUsername())) {
-                    return refresh(user,allRequest,allResponse);
+                    return refresh(allRequest,allResponse);
                 }
 
                 String token = jwtService.getToken(extraClaims, user);
@@ -147,15 +147,10 @@ public class AccessService {
         }
     }
 
-    public ResponseEntity<?> refresh(User userRequest, HttpServletRequest allRequest, HttpServletResponse allResponse) {
+    public ResponseEntity<?> refresh(HttpServletRequest allRequest, HttpServletResponse allResponse) {
         Map<String, Object> extraClaims = getExtraClientClaims(allRequest);
 
         String token = jwtAuthenticationFilter.getTokenFromRequest(allRequest);
-
-        if(token == null) return new ResponseEntity<>(AuthResponse.builder()
-                .token(redisTokenService.getValueForKey(UserOptionsUUID.VALID_TOKEN, userRequest.getUsername()))
-                .state(TokenStates.RENEWED.toString())
-                .build(),HttpStatus.ACCEPTED);
 
         String ip = jwtService.getClaim(token,"ip");
         String webAgent = jwtService.getClaim(token,"webAgent");
