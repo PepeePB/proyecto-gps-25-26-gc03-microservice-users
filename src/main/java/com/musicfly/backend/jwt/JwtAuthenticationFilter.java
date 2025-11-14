@@ -29,6 +29,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor
@@ -47,6 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String token = getTokenFromRequest(request);
+
         final String username;
         final String ip = request.getRemoteAddr();
 

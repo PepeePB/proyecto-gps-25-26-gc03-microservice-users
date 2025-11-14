@@ -22,21 +22,6 @@ public class AccessController {
     private final GoogleAuthGrantCodeService googleAuthGrantCodeService;
     private final MailService mailService;
 
-    // POST
-
-    /**
-     * Metodo que genera un token si el usuario y la contraseña coinciden en la BD
-     *
-     * SOBRECARGA -> Soporta el uso de username y/o email
-     *
-     * @param request
-     * @param allRequest
-     * @return
-     */
-    @PostMapping(value = "login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletRequest allRequest, HttpServletResponse allResponse) {
-        return accessService.login(request,allRequest,allResponse);
-    }
     @PostMapping(value = "register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request, HttpServletRequest allRequest){
         return accessService.register(request,allRequest);
