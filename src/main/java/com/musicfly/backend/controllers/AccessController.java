@@ -32,9 +32,31 @@ public class AccessController {
         return accessService.passwordResetRequest(passwordResetRequestDTO);
     }
 
+    @PostMapping(value = "passwordReset")
+    public ResponseEntity<?> passwordReset(@RequestBody PasswordResetDTO passwordResetDTO) {
+        return accessService.passwordReset(passwordResetDTO);
+    }
+
+    @PostMapping(value = "confirmResetPassword")
+    public ResponseEntity<String> confirmResetPassword(@RequestBody String id, @RequestBody String password) {
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(value = "refreshToken")
     public ResponseEntity<?> refreshToken(HttpServletRequest allRequest, HttpServletResponse allResponse){
-        return null;
+        return accessService.refresh(allRequest,allResponse);
+    }
+
+    @PostMapping(value = "logout")
+    public ResponseEntity<?> logout(HttpServletRequest allRequest, HttpServletResponse allResponse){
+        return ResponseEntity.ok(accessService.logout(allRequest,allResponse));
+    }
+
+
+    // GET
+    @GetMapping( "/loginWithGoogleConfirm")
+    public ResponseEntity<?> grantCode(@RequestParam("code") String code, @RequestParam("scope") String scope, @RequestParam("authuser") String authUser, @RequestParam("prompt") String prompt, HttpServletRequest allRequest, HttpServletResponse allResponse) {
+        return googleAuthGrantCodeService.getOauthAccessTokenGoogle(code,allRequest, allResponse);
     }
 
     @GetMapping("/confirmAccount")
