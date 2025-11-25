@@ -1,0 +1,40 @@
+2025-11-24 21:37:26 [restartedMain] INFO  c.m.b.MusicFlyBackendApplication - Starting MusicFlyBackendApplication using Java 17.0.7 with PID 97155 (/Users/samuelsotoparedes/IdeaProjects/proyecto-gps-25-26-gc03-microservice-users-5/build/classes/java/main started by samuelsotoparedes in /Users/samuelsotoparedes/IdeaProjects/proyecto-gps-25-26-gc03-microservice-users-5)
+2025-11-24 21:37:26 [restartedMain] INFO  c.m.b.MusicFlyBackendApplication - The following 1 profile is active: "dev"
+2025-11-24 21:37:29 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:37:29 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 21:37:29 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-11-24 21:37:29 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 21:37:30 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 21:37:30 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e32a956
+2025-11-24 21:37:30 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 21:37:33 [restartedMain] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2025-11-24 21:37:33 [restartedMain] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2025-11-24 21:37:33 [restartedMain] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2025-11-24 21:37:33 [restartedMain] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2025-11-24 21:37:39 [restartedMain] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-24 21:37:39 [restartedMain] INFO  c.netflix.discovery.DiscoveryClient - Client configured to neither register nor query for data.
+2025-11-24 21:37:39 [restartedMain] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1764016659405 with initial instances count: 0
+2025-11-24 21:37:39 [restartedMain] INFO  c.n.e.DefaultEurekaServerContext - Initializing ...
+2025-11-24 21:37:39 [restartedMain] WARN  c.n.eureka.cluster.PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2025-11-24 21:37:39 [restartedMain] INFO  c.n.e.r.AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2025-11-24 21:37:39 [restartedMain] INFO  c.n.e.DefaultEurekaServerContext - Initialized
+2025-11-24 21:37:39 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:37:39 [Thread-15] INFO  c.n.e.r.PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2025-11-24 21:37:39 [Thread-15] INFO  c.n.e.r.PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2025-11-24 21:37:39 [Thread-15] INFO  c.n.e.r.PeerAwareInstanceRegistryImpl - Changing status to UP
+2025-11-24 21:37:39 [restartedMain] INFO  c.m.b.MusicFlyBackendApplication - Started MusicFlyBackendApplication in 14.024 seconds (process running for 14.85)
+2025-11-24 21:37:39 [restartedMain] INFO  c.m.b.MusicFlyBackendApplication - Application started in 14.048 seconds
+2025-11-24 21:37:40 [RMI TCP Connection(5)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 21:37:44 [http-nio-8080-exec-2] WARN  c.m.b.jwt.JwtAuthenticationFilter - CONTROLLER REQUEST WITH BLACKLISTED TOKEN - IP: 0:0:0:0:0:0:0:1 - URI: /access/logout - TOKEN: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpdmFubCIsIndlYkFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE4LjYgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzY0MTAwMjgzLCJpYXQiOjE3NjQwMTM4ODMsImlwIjoiMDowOjA6MDowOjA6MDoxIn0.gjX0O3O7Tho5y_6auOzDIOZMVN4E3qZilePUU2d_y30VZ6xK6r3fO2Cz7SkawztNR6gJRHVcGyzQSLRAdgY5Sflvlk52NKzI7AmRwVHuITZYuux9QYv5qxh3g31qtyyXSd_mXHSxGiJ8win4AiBKq-EHsa1tBal9lWfML0WNDENy_XmFI_rx9jy-Lzvy3gQWxnE_VX0kva6VvUJnoxQJy8CMtI4m1dH9itrOju9zyWRHhe9rksfgpvuFNUQBTERquc8imchQDtJAFjb0ENOhyP_iShZhvrFhdcu_hBljXWe_Yd7kRi8g96RwYJT3DXmhtH6noKnTyufYXfl3lpQaMA
+2025-11-24 21:37:54 [http-nio-8080-exec-4] WARN  c.m.b.jwt.JwtAuthenticationFilter - CONTROLLER REQUEST WITH BLACKLISTED TOKEN - IP: 0:0:0:0:0:0:0:1 - URI: /access/login - TOKEN: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpdmFubCIsIndlYkFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE4LjYgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzY0MTAwMjgzLCJpYXQiOjE3NjQwMTM4ODMsImlwIjoiMDowOjA6MDowOjA6MDoxIn0.gjX0O3O7Tho5y_6auOzDIOZMVN4E3qZilePUU2d_y30VZ6xK6r3fO2Cz7SkawztNR6gJRHVcGyzQSLRAdgY5Sflvlk52NKzI7AmRwVHuITZYuux9QYv5qxh3g31qtyyXSd_mXHSxGiJ8win4AiBKq-EHsa1tBal9lWfML0WNDENy_XmFI_rx9jy-Lzvy3gQWxnE_VX0kva6VvUJnoxQJy8CMtI4m1dH9itrOju9zyWRHhe9rksfgpvuFNUQBTERquc8imchQDtJAFjb0ENOhyP_iShZhvrFhdcu_hBljXWe_Yd7kRi8g96RwYJT3DXmhtH6noKnTyufYXfl3lpQaMA
+2025-11-24 21:38:19 [http-nio-8080-exec-2] INFO  c.m.b.jwt.JwtAuthenticationFilter - CONTROLLER REQUEST WITH TOKEN SUCCESS - IP: 0:0:0:0:0:0:0:1 - URI: /access/login - TOKEN: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpdmFubCIsIndlYkFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE4LjYgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzY0MTAzMDk0LCJpYXQiOjE3NjQwMTY2OTQsImlwIjoiMDowOjA6MDowOjA6MDoxIn0.CrcAaPWb9kzyM5ULgQuliKIKoOxP-g_T-8jNmC4OBkPo-tuNi7djFo5qZQx9BLUBbOQD8h5OBPwOSXxG3rz1zogOzT9rW0A7xL0W2547QyZRKYo0exQ50RFlChvcYcwXc-Chl4PsnJGw_Q9iekRp0dRyTpX_Y1xj1m5yleH-hXH9Z0QQG3ur1WOlPKTRWXMxDQVm-OcLt1CeV5tumhBbAWm-LHJz1j1Tzu9rHGD3rqnCha2fDn4qPEUijvlhTO73QbgOL8XA1zZeNDwQLW29ZaFkatiWHJ2uLi9GfA1LIEmltc8T9fUIiuZ1vaBTrCeR-XTjbqM2cNxTgWPB4x4J0g
+2025-11-24 21:38:31 [http-nio-8080-exec-5] INFO  c.m.b.jwt.JwtAuthenticationFilter - CONTROLLER REQUEST WITH TOKEN SUCCESS - IP: 0:0:0:0:0:0:0:1 - URI: /access/logout - TOKEN: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpdmFubCIsIndlYkFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTVfNykgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE4LjYgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzY0MTAzMDk5LCJpYXQiOjE3NjQwMTY2OTksImlwIjoiMDowOjA6MDowOjA6MDoxIn0.K4gn28_ZTl1GBeM_kgk9rKl2_6uedIbrbuFMTT6W-ufmx_j-zm0IkSr2IBnk_A3-bdRzNEV9urKWk70MozJuDnvTxHSLQtDuTjw989GpY47NjPJXTVIzGihmQV3UiwIdRMkNN6JKl66GiiRPPKFfVpDn_zfmRdPhFc0X9gAFE3FbAOWzB416Fpkam-z6Vm-5JwrcmU-38KHHraElqcA97eRRY4hIa6NtA2OCS5OmgyM-7Ch6CH1Ow557C6RS9Iuj2orPCTxN6nyIJoL-mysnn6WPuLYeH0rZS-mQ8gaqCsM_CPwGSzjWspfOFuWDXj8SUGs7Lqa-VkDEJ0p88PWP3g
+2025-11-24 21:38:39 [Eureka-EvictionTimer] INFO  c.n.e.r.AbstractInstanceRegistry - Running the evict task with compensationTime 0ms
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.n.e.DefaultEurekaServerContext - Shutting down ...
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.n.e.DefaultEurekaServerContext - Shut down
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.n.e.DefaultEurekaServerContext - Shutting down ...
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.n.e.DefaultEurekaServerContext - Shut down
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-24 21:38:44 [SpringApplicationShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
