@@ -19,6 +19,8 @@ java {
 // Repositorios donde buscar las dependencias
 repositories {
     mavenCentral() // Repositorio de Maven Central donde se buscarán las dependencias
+    maven { url "https://repo.spring.io/milestone" } // Versiones milestone de Spring Cloud
+    maven { url "https://repo.spring.io/snapshot" }  // Versiones snapshot si es necesario
 }
 
 test {
@@ -108,8 +110,13 @@ dependencies {
     // Logs
     implementation 'ch.qos.logback:logback-classic'
 
-    // Eureka Server
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    // Optional: Actuator para monitoreo
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // Eureka Client (para registrar en un Eureka externo)
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }
 
 dependencyManagement {

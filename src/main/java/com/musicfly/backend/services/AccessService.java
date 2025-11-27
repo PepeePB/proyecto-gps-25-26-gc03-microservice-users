@@ -63,7 +63,7 @@ public class AccessService {
         }
 
         Map<String, Object> extraClaims = getExtraClientClaims(allRequest);
-        Cookie cookieJWT, cookieUsername, cookieIsArtist;
+        Cookie cookieJWT, cookieUsername, cookieIsArtist, cookieIdUser;
 
         boolean isBrowser = allRequest != null && isRequestFromBrowser(allRequest);
 
@@ -97,22 +97,28 @@ public class AccessService {
             // Cookies no-HTTP for convenience (username / isArtist) and secure HTTP-only for token
             cookieUsername = new Cookie("username", user.getUsername());
             cookieIsArtist = new Cookie("isArtist", String.valueOf(user.isArtist()));
+            cookieIdUser = new Cookie("idUsuario", String.valueOf(user.getId()));
             cookieUsername.setHttpOnly(false);
             cookieIsArtist.setHttpOnly(false);
+            cookieIdUser.setHttpOnly(false);
             cookieUsername.setSecure(false);
             cookieIsArtist.setSecure(false);
+            cookieIdUser.setSecure(false);
             cookieUsername.setPath("/");
             cookieIsArtist.setPath("/");
+            cookieIdUser.setPath("/");
             cookieUsername.setMaxAge(24 * 60 * 60);
             cookieIsArtist.setMaxAge(24 * 60 * 60);
+            cookieIdUser.setMaxAge(24 * 60 * 60);
             if (allResponse != null) {
                 allResponse.addCookie(cookieUsername);
                 allResponse.addCookie(cookieIsArtist);
+                allResponse.addCookie(cookieIdUser);
             }
 
             // Si ya tiene un token válido, devolvemos refresh
             if (redisTokenService.hasTokenType(UserOptionsUUID.VALID_TOKEN, user.getUsername())) {
-                return refresh(allRequest, allResponse);
+                return refresh(allRequest, allResponse,true,user);
             }
 
             String token = jwtService.getToken(extraClaims, user);
@@ -173,13 +179,17 @@ public class AccessService {
         }
     }
 
-    public ResponseEntity<?> refresh(HttpServletRequest allRequest, HttpServletResponse allResponse) {
+    public ResponseEntity<?> refresh(HttpServletRequest allRequest, HttpServletResponse allResponse){
+        return refresh(allRequest,allResponse,false,null);
+    }
+    public ResponseEntity<?> refresh(HttpServletRequest allRequest, HttpServletResponse allResponse, Boolean fromLogin, User userFromLogin) {
         Map<String, Object> extraClaims = getExtraClientClaims(allRequest);
 
         String token = jwtAuthenticationFilter.getTokenFromRequest(allRequest);
-
+        String ip, webAgent, usernameFromToken;
         if (token == null) {
-            return new ResponseEntity<>(ErrorResponseDTO.builder()
+            if(!fromLogin)
+                return new ResponseEntity<>(ErrorResponseDTO.builder()
                     .error("missing_token")
                     .message("No token provided for refresh.")
                     .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -187,13 +197,20 @@ public class AccessService {
                     .build(), HttpStatus.BAD_REQUEST);
         }
 
-        String ip = jwtService.getClaim(token, "ip");
-        String webAgent = jwtService.getClaim(token, "webAgent");
-        String usernameFromToken = jwtService.getUsernameFromToken(token);
+        if(fromLogin){
+            token = redisTokenService.getValueForKey(UserOptionsUUID.VALID_TOKEN+userFromLogin.getUsername());
+            ip = "";
+            webAgent = "";
+            usernameFromToken = userFromLogin.getUsername();
+        }else{
+            ip = jwtService.getClaim(token, "ip");
+            webAgent = jwtService.getClaim(token, "webAgent");
+            usernameFromToken = jwtService.getUsernameFromToken(token);
+        }
 
-        if (ip != null && webAgent != null
+        if ((ip != null && webAgent != null
                 && ip.equals(extraClaims.get("ip")) && webAgent.equals(extraClaims.get("webAgent"))
-                && redisTokenService.hasTokenType(UserOptionsUUID.VALID_TOKEN, usernameFromToken)) {
+                && redisTokenService.hasTokenType(UserOptionsUUID.VALID_TOKEN, usernameFromToken)) || fromLogin) {
             UserDetails user = userDetailsService.loadUserByUsername(usernameFromToken);
 
             String newToken = jwtService.getToken(extraClaims, user);

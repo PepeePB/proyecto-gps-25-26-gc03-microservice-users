@@ -13,6 +13,7 @@ import com.musicfly.backend.views.DTO.ReceivedArtistDTO;
 import com.musicfly.backend.views.DTO.SentArtistDTO;
 import com.musicfly.backend.views.DTO.*;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,26 +26,12 @@ import java.util.stream.Collectors;
  * Incluye la creación, actualización, obtención y eliminación de artistas, así como la conversión entre objetos de tipo {@link Artist} y {@link SentArtistDTO}.
  */
 @Service
+@RequiredArgsConstructor
 public class ArtistService {
 
-    private final PaymentService paymentService;
     private final ArtistRepository artistRepository;
     private final UserRepository userRepository;
     private final GenreRepository genreRepository;  // Repositorio para géneros
-
-    /**
-     * Constructor que inicializa los repositorios necesarios para el servicio.
-     *
-     * @param artistRepository El repositorio de artistas.
-     * @param userRepository El repositorio de usuarios.
-     * @param genreRepository El repositorio de géneros.
-     */
-    public ArtistService(PaymentService paymentService, ArtistRepository artistRepository, UserRepository userRepository, GenreRepository genreRepository) {
-        this.paymentService = paymentService;
-        this.artistRepository = artistRepository;
-        this.userRepository = userRepository;
-        this.genreRepository = genreRepository;
-    }
 
     /**
      * Crea un nuevo artista utilizando la información proporcionada por el DTO de entrada y asociando al usuario indicado.
@@ -71,6 +58,7 @@ public class ArtistService {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .password(user.getPassword())
+                .role(user.getRole())
                 .phone(user.getPhone())
                 .bio(user.getBio())
                 .personalLink(user.getPersonalLink())

@@ -46,16 +46,7 @@ public class JwtService {
      */
     public boolean isTokenValid(String token, UserDetails userDetails, HttpServletRequest request) {
         final String username = getUsernameFromToken(token);
-        return username.equals(userDetails.getUsername()) && !isExpiredThisToken(token) && isClient(token,request);
-    }
-
-    private boolean isClient(String token, HttpServletRequest request) {
-        String tokenIp = getClaim(token, "ip");
-        String tokenAgent = getClaim(token, "webAgent");
-
-        return request.getHeader("User-Agent").equals(tokenAgent)
-                &&
-                request.getRemoteAddr().split(",")[0].equals(tokenIp);
+        return username.equals(userDetails.getUsername()) && !isExpiredThisToken(token);
     }
 
     /***

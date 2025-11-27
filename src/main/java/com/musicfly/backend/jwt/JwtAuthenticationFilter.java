@@ -34,7 +34,6 @@ import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
-@NoArgsConstructor(force = true)
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
@@ -55,6 +54,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String username;
         final String ip = request.getRemoteAddr();
 
+        String path = request.getServletPath();
+        if (path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs") || path.startsWith("/eureka") || path.equals("/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // Si la opción "Open Doors" está habilitada, no procesamos la autenticación JWT
         if (applicationProperties != null && applicationProperties.isOpenDoors()) {
             filterChain.doFilter(request, response);
@@ -72,6 +77,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             jwtDecoder.decode(token);
         } catch (Exception e) {
+            e.printStackTrace();
             logger.warn("Invalid JWT token provided - IP: {} - URI: {} - Error: {}", ip, request.getRequestURI(), e.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

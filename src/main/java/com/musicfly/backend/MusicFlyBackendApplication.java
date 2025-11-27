@@ -5,12 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-@EnableEurekaServer  // Habilita el servidor Eureka (Registrador de microservicios)
-//@EnableConfigurationProperties(RsaKeysConfig.class) // Detecta la clase para poder acceder a properties
+@EnableDiscoveryClient  // Habilita el servidor Eureka (Registrador de microservicios)
 public class MusicFlyBackendApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(MusicFlyBackendApplication.class);
