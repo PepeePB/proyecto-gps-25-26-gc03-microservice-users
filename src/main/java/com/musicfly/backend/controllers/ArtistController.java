@@ -127,7 +127,7 @@ public class ArtistController {
     @DeleteMapping("/username/{username}")
     public ResponseEntity<User> deleteArtistByUsername(@PathVariable String username) {
         try {
-            User user = artistService.deleteArtistByUsername(username);
+            artistService.deleteArtistByUsername(username);
             return ResponseEntity.noContent().build();
         } catch (ArtistNotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -137,7 +137,7 @@ public class ArtistController {
     @DeleteMapping("/{id}/revert")
     public ResponseEntity<User> revertArtistToUser(@PathVariable Long id) {
         try {
-            User user = artistService.revertArtistToUser(id);
+            artistService.revertArtistToUser(id);
             return ResponseEntity.noContent().build();
         } catch (ArtistNotFoundException | IllegalStateException e) {
             return ResponseEntity.notFound().build();

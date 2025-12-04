@@ -32,6 +32,8 @@ public class CoreViewsController {
 
     private final PasswordEncoder passwordEncorer;
 
+    private static final String PASSWORD_RESET_VIEW = "email/password-reset-form";
+
     @GetMapping("core/views/register/success")
     public ModelAndView showSuccessView() {
         String frontendUrl = domainFrontend+"login";
@@ -79,7 +81,7 @@ public class CoreViewsController {
         if (username != null) {
             model.addAttribute("username", username);
         }
-        return "email/password-reset-form";
+        return PASSWORD_RESET_VIEW;
     }
 
     @PostMapping("core/views/password-reset-form")
@@ -96,7 +98,7 @@ public class CoreViewsController {
 
                 if (!nueva.equals(confirmar)) {
                     model.addAttribute("error", "Las contraseñas no coinciden.");
-                    return "email/password-reset-form";
+                    return PASSWORD_RESET_VIEW;
                 }
 
                 if (redisTokenService.hasTokenType(UserOptionsUUID.RESET_PASSWORD,passwordResetToken)) {
@@ -105,7 +107,7 @@ public class CoreViewsController {
                             user.get().setPassword(passwordEncorer.encode(nueva));
                             userRepository.save(user.get());
                             model.addAttribute("success", "Contraseña actualizada correctamente.");
-                            return "email/password-reset-form";
+                            return PASSWORD_RESET_VIEW;
                     }else{
                         System.err.println("Usuario no encontrado");
                     }
@@ -114,7 +116,7 @@ public class CoreViewsController {
                 }
 
             model.addAttribute("error", "Solicitud inválida o expirada.");
-            return "email/password-reset-form";
+            return PASSWORD_RESET_VIEW;
     }
 
 }

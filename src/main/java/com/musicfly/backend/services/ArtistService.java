@@ -170,7 +170,7 @@ public class ArtistService {
     public List<SentArtistDTO> getAllArtists() {
         return artistRepository.findAll().stream()
                 .map(this::mapToSentDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -182,7 +182,7 @@ public class ArtistService {
         return artistRepository.findByIsTrendingTrue().stream()
                 .limit(4)
                 .map(this::mapToSentDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -208,7 +208,7 @@ public class ArtistService {
     public List<SentArtistDTO> getArtistsByName(String name) {
         return artistRepository.findByArtisticNameContainingIgnoreCase(name).stream()
                 .map(this::mapToSentDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**

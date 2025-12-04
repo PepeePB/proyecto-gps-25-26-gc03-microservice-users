@@ -1,7 +1,7 @@
 package com.musicfly.backend.exceptions;
 
 import com.musicfly.backend.exceptions.general.*;
-import com.musicfly.backend.exceptions.general.*;
+
 import com.musicfly.backend.views.DTO.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -25,6 +25,9 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    private static final String BAD_REQUEST_MSG = "bad_request";
+
 
     /**
      * Maneja la excepción ContentNotFound. Esta excepción ocurre cuando no se encuentra el contenido solicitado.
@@ -74,7 +77,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NullValueException.class)
     public ResponseEntity<ErrorResponseDTO> handleNullValueException(NullValueException ex) {
         ErrorResponseDTO error = ErrorResponseDTO.builder()
-                .error("bad_request")
+                .error(BAD_REQUEST_MSG)
                 .message("Bad Request: " + ex.getMessage())
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .timestamp(LocalDateTime.now().toString())
@@ -93,7 +96,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadContentException.class)
     public ResponseEntity<ErrorResponseDTO> handleBadContentException(BadContentException ex) {
         ErrorResponseDTO error = ErrorResponseDTO.builder()
-                .error("bad_request")
+                .error(BAD_REQUEST_MSG)
                 .message("Bad Request: " + ex.getMessage())
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .timestamp(LocalDateTime.now().toString())
@@ -172,7 +175,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException ex) {
         ErrorResponseDTO error = ErrorResponseDTO.builder()
-                .error("bad_request")
+                .error(BAD_REQUEST_MSG)
                 .message("Bad request for illegal argument: " + ex.getMessage())
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .timestamp(LocalDateTime.now().toString())
